@@ -1,0 +1,22 @@
+{
+  "task_id": "04b1d7bf",
+  "count": 2,
+  "boxes": [
+    {
+      "label": "white board",
+      "conf": 0.36,
+      "x": 778,
+      "y": 1165,
+      "w": 778,
+      "h": 661
+    },
+    {
+      "label": "white board",
+      "conf": 0.25,
+      "x": 621,
+      "y": 1165,
+      "w": 813,
+      "h": 661
+    }
+  ]
+}
