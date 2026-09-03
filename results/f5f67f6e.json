@@ -1,0 +1,22 @@
+{
+  "task_id": "f5f67f6e",
+  "count": 2,
+  "boxes": [
+    {
+      "label": "signboard",
+      "conf": 0.34,
+      "x": 1280,
+      "y": 1457,
+      "w": 622,
+      "h": 125
+    },
+    {
+      "label": "holding paper",
+      "conf": 0.16,
+      "x": 2244,
+      "y": 508,
+      "w": 389,
+      "h": 334
+    }
+  ]
+}
