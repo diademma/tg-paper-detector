@@ -1,0 +1,30 @@
+{
+  "task_id": "36e1a745",
+  "count": 3,
+  "boxes": [
+    {
+      "label": "cardboard sign",
+      "conf": 0.22,
+      "x": 183,
+      "y": 830,
+      "w": 212,
+      "h": 235
+    },
+    {
+      "label": "cardboard sign",
+      "conf": 0.15,
+      "x": 255,
+      "y": 343,
+      "w": 363,
+      "h": 190
+    },
+    {
+      "label": "cardboard sign",
+      "conf": 0.15,
+      "x": 2397,
+      "y": 328,
+      "w": 234,
+      "h": 256
+    }
+  ]
+}
