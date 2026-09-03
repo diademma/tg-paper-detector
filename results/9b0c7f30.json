@@ -1,0 +1,14 @@
+{
+  "task_id": "9b0c7f30",
+  "count": 1,
+  "boxes": [
+    {
+      "label": "sketchbook",
+      "conf": 0.36,
+      "x": 373,
+      "y": 555,
+      "w": 379,
+      "h": 482
+    }
+  ]
+}
