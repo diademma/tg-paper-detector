@@ -1,0 +1,46 @@
+{
+  "task_id": "dbb4bb23",
+  "count": 5,
+  "boxes": [
+    {
+      "label": "sketchbook",
+      "conf": 0.33,
+      "x": 2245,
+      "y": 508,
+      "w": 396,
+      "h": 336
+    },
+    {
+      "label": "sketchbook",
+      "conf": 0.27,
+      "x": 2309,
+      "y": 1456,
+      "w": 460,
+      "h": 286
+    },
+    {
+      "label": "sketchbook",
+      "conf": 0.23,
+      "x": 282,
+      "y": 527,
+      "w": 457,
+      "h": 678
+    },
+    {
+      "label": "sketchbook",
+      "conf": 0.17,
+      "x": 1765,
+      "y": 1233,
+      "w": 300,
+      "h": 207
+    },
+    {
+      "label": "signboard",
+      "conf": 0.16,
+      "x": 1270,
+      "y": 1178,
+      "w": 381,
+      "h": 454
+    }
+  ]
+}
