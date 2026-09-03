@@ -5,12 +5,10 @@ import json
 import subprocess
 from ultralytics import YOLOWorld
 
-# Длина жизни сессии демона (5 часов = 18 000 секунд)
 MAX_LIFETIME = 18000 
 POLL_INTERVAL = 2
 
 def git_cmd(cmd_list):
-    """Выполнение git команд без шума в консоли"""
     try:
         subprocess.run(cmd_list, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     except Exception:
@@ -20,19 +18,19 @@ def main():
     print("🧠 Прогрев нейросети: загружаю YOLO-World в оперативную память...")
     model = YOLOWorld("yolov8s-worldv2.pt")
 
-    # Четкие классы предметов (без слов про руки)
+    # Базовые визуальные якоря для максимального охвата
     target_classes = [
+        "paper", 
         "sheet of paper", 
-        "white placard", 
-        "signboard", 
-        "notepad", 
-        "cardboard sign", 
+        "sign", 
+        "handheld sign", 
+        "notebook", 
         "sketchbook", 
-        "paper banner",
-        "drawing book"
+        "poster", 
+        "white board"
     ]
     model.set_classes(target_classes)
-    print("⚡ ДЕМОН АКТИВЕН (HD Режим 1280px) И ГОТОВ К РАБОТЕ!")
+    print("⚡ ДЕМОН АКТИВЕН (Ultra Sensitivity 0.07) И ГОТОВ К РАБОТЕ!")
 
     os.makedirs("tasks", exist_ok=True)
     os.makedirs("results", exist_ok=True)
@@ -40,10 +38,8 @@ def main():
     start_time = time.time()
 
     while time.time() - start_time < MAX_LIFETIME:
-        # Синхронизация с репозиторием
         git_cmd(["git", "pull", "--rebase"])
 
-        # Проверяем, прилетели ли новые файлы задач от плагина
         task_files = [f for f in os.listdir("tasks") if f.endswith(".jpg") or f.endswith(".png")]
 
         if task_files:
@@ -53,8 +49,8 @@ def main():
                 print(f"🎯 Начинаю анализ задачи: {task_id}")
 
                 try:
-                    # imgsz=1280 позволяет четко распознавать даже мелкие таблички на коллажах
-                    results = model.predict(img_path, conf=0.12, imgsz=1280)
+                    # Порог 0.07 вытащит даже сложные таблички на палочках и постеры
+                    results = model.predict(img_path, conf=0.07, imgsz=1280)
                     boxes = results[0].boxes
 
                     detected_boxes = []
@@ -79,11 +75,9 @@ def main():
                         "boxes": detected_boxes
                     }
 
-                    # Записываем JSON с координатами для планшета
                     with open(f"results/{task_id}.json", "w", encoding="utf-8") as f:
                         json.dump(out_data, f, indent=2)
 
-                    # Удаляем входную задачу, чтобы не крутить ее по кругу
                     if os.path.exists(img_path):
                         os.remove(img_path)
 
@@ -94,7 +88,6 @@ def main():
                     if os.path.exists(img_path):
                         os.remove(img_path)
 
-            # Пушим сформированные JSON-файлы обратно
             git_cmd(["git", "add", "results/", "tasks/"])
             git_cmd(["git", "commit", "-m", "Processed batch"])
             git_cmd(["git", "push"])
