@@ -1,0 +1,22 @@
+{
+  "task_id": "54ee90bd",
+  "count": 2,
+  "boxes": [
+    {
+      "label": "sketchbook",
+      "conf": 0.35,
+      "x": 579,
+      "y": 294,
+      "w": 120,
+      "h": 191
+    },
+    {
+      "label": "sketchbook",
+      "conf": 0.18,
+      "x": 181,
+      "y": 835,
+      "w": 208,
+      "h": 241
+    }
+  ]
+}
