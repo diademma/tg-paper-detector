@@ -1,0 +1,22 @@
+{
+  "task_id": "43df2520",
+  "count": 2,
+  "boxes": [
+    {
+      "label": "white board",
+      "conf": 0.25,
+      "x": 260,
+      "y": 175,
+      "w": 465,
+      "h": 312
+    },
+    {
+      "label": "sketchbook",
+      "conf": 0.22,
+      "x": 373,
+      "y": 555,
+      "w": 378,
+      "h": 482
+    }
+  ]
+}
