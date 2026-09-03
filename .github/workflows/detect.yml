@@ -1,0 +1,39 @@
+name: Paper Detector Engine
+
+on:
+  repository_dispatch:
+    types: [test_image]
+
+jobs:
+  inference:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Даем права на запись файла в репозиторий
+
+    steps:
+      - name: Чек-аут репозитория
+        uses: actions/checkout@v4
+
+      - name: Установка Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - name: Установка библиотек
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Анализ нейросетью
+        run: |
+          python detect.py "${{ github.event.client_payload.image_url }}" "${{ github.event.client_payload.task_id }}"
+
+      # Авто-коммит готового JSON обратно в репо
+      - name: Сохранение результата в репозиторий
+        run: |
+          git config --global user.name "AI-Engine"
+          git config --global user.email "actions@github.com"
+          git add results/
+          git commit -m "Done task: ${{ github.event.client_payload.task_id }}" || exit 0
+          git push
